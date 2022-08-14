@@ -1,4 +1,5 @@
 const nodeMailer = require('nodemailer');
+cron = require('node-cron');
 
 const transporter = nodeMailer.createTransport({
     service: "outlook",
@@ -9,14 +10,17 @@ const transporter = nodeMailer.createTransport({
 });
 const options = {
     from: "jackyoukstetter-goodmorning@outlook.com",
-    to: "jackyoukstetter1@gmail.com",
-    subject: "testin emailbot",
-    text: "yo it worked lol goodmornin"
+    to: "carlanb@gmail.com",
+    subject: "Goodmorning!",
+    text: "Hey Grandma carlan, wishing you a great morning! -Jack's email robot"
 };
 
-transporter.sendMail(options, (err, data) => {
-    if(err){
-        console.error(err);
-    }
-    console.log(data);
-});
+cron.schedule('0 9 * * Monday-Friday', function(){
+    transporter.sendMail(options, (err, data) => {
+        if(err){
+            console.error(err);
+        }
+        console.log(data);
+    });
+}); 
+
