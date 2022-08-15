@@ -1,5 +1,5 @@
 const nodeMailer = require('nodemailer');
-cron = require('node-cron');
+const cron = require('node-cron');
 
 const transporter = nodeMailer.createTransport({
     service: "outlook",
